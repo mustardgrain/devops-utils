@@ -1,0 +1,24 @@
+- name: Configure RAID | Copy devices.sh
+  copy: src=devices.sh dest=/tmp/devices.sh mode=0755
+
+- name: Configure RAID | Install the mdadm dependency
+  apt:
+    name: "mdadm"
+    state: present
+    update_cache: yes
+
+- name: Configure RAID | Unmount existing device
+  shell: umount /mnt
+
+- name: Configure RAID | Determine devices
+  shell: /tmp/devices.sh
+  register: devices
+
+- name: Configure RAID | Create RAID device
+  shell: yes | mdadm --create --force --verbose /dev/md0 --level={{ mdadm_raid_level }} --raid-devices={{ devices.stdout_lines | count }} {{ devices.stdout | replace("\n", " ") }}
+
+- name: Configure RAID | Format RAID device
+  shell: "{{ mkfs }} /dev/md0"
+
+- name: Configure RAID | Mount RAID device
+  mount: name=/mnt src=/dev/md0 fstype={{ fstype }} state=mounted opts=noatime

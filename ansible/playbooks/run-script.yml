@@ -1,0 +1,9 @@
+---
+
+- name: Run an arbitrary script
+  hosts: "{{ hosts }}"
+  remote_user: ubuntu
+  sudo: yes
+  gather_facts: false
+  roles:
+    - script

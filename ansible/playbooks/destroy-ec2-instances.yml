@@ -1,0 +1,33 @@
+---
+
+- name: Get EC2 instances' IDs
+  hosts: "{{ hosts }}"
+  remote_user: ubuntu
+  sudo: true
+  gather_facts: true
+  tasks:
+    - name: Get EC2 instances' IDs | Gather EC2 facts
+      action: ec2_facts
+
+- name: Destroy EC2 instances
+  hosts: "{{ hosts }}"
+  connection: local
+  remote_user: root
+  gather_facts: true
+  vars:
+    keypair: default
+    security_group: default
+    region: us-east-1
+  tasks:
+    - name: Destroy EC2 instance | Terminate instances
+      local_action: ec2 state="absent" keypair="{{ keypair }}" instance_ids="{{ item }}" wait=yes region="{{ region }}"
+      with_items: hostvars[inventory_hostname]['ansible_ec2_instance_id']
+
+- name: Destroy EC2 inventory files
+  hosts: local
+  connection: local
+  remote_user: root
+  gather_facts: false
+  tasks:
+    - name: Destroy EC2 instance | Delete inventory file
+      local_action: shell rm {{ vars['inventory_dir'] }}/{{ hosts }}.*

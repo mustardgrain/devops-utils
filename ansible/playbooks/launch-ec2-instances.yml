@@ -1,0 +1,9 @@
+---
+
+- name: Launch EC2 instances
+  hosts: local
+  connection: local
+  remote_user: root
+  gather_facts: false
+  roles:
+    - { role: ec2-instance-creator, instance_count: 1, instance_group_name: test, instance_type: m3.large }

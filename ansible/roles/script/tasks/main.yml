@@ -1,0 +1,13 @@
+- name: Run script | Copy script_path to script.sh
+  copy: src={{script_path}} dest=/tmp/script.sh mode=0755
+
+- name: Run script | Debug
+  debug: msg="Running {{script_path}} remotely"
+
+- name: Run script | Run script.sh
+  shell: /tmp/script.sh
+  register: script_output
+
+- debug: msg="{{ script_output.stdout }}"
+
+- debug: msg="{{ script_output.stderr }}"
