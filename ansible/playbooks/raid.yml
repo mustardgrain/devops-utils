@@ -1,9 +1,0 @@
----
-
-- name: Run RAID
-  hosts: "{{ hosts }}"
-  remote_user: ubuntu
-  sudo: yes
-  gather_facts: true
-  roles:
-    - raider

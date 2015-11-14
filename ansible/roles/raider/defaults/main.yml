@@ -1,3 +1,0 @@
-mdadm_raid_level: stripe
-fstype: ext4
-mkfs: "mkfs.{{ fstype }}"
