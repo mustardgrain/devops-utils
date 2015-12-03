@@ -2,13 +2,13 @@
 
 source $(dirname $0)/util.sh
 
-if [ $# -ne 2 ] ; then
+if [ $# -lt 1 ] ; then
   echo "Usage: $0 <Cassandra container name> <Cassandra seed container name>"
   exit 1
 fi
 
 name=$1
-seed_name=$2
+seed_name=${2:-$1}
 opscenter_ip=$(get_internal_ip opscenter)
 
 if [ "$name" = "$seed_name" ] ; then
