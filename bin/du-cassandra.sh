@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-source $(dirname $0)/util.sh
+source $(dirname $0)/_du-util.sh
 
 if [ $# -lt 1 ] ; then
   echo "Usage: $0 <Cassandra container name> <Cassandra seed container name>"

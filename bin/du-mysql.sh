@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-source $(dirname $0)/util.sh
+source $(dirname $0)/_du-util.sh
 
 if [ $# -ne 4 ] ; then
   echo "Usage: $0 <root password (can be empty)> <database> <database user ID> <database password>"

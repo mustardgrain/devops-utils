@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-source $(dirname $0)/util.sh
+source $(dirname $0)/_du-util.sh
 
 name=redis
 

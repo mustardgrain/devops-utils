@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-source $(dirname $0)/util.sh
+source $(dirname $0)/_du-util.sh
 
 if [ $# -ne 3 ] ; then
   echo "Usage: $0 <local directory> <user ID> <password>"
