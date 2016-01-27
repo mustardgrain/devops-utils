@@ -9,7 +9,6 @@ fi
 
 name=$1
 seed_name=${2:-$1}
-opscenter_ip=$(get_internal_ip opscenter)
 
 if [ "$name" = "$seed_name" ] ; then
   # Leave this setting blank intentionally so that the seed
@@ -29,7 +28,6 @@ docker run \
        $net \
        --name $name \
        -e SEED=$cassandra_seed_ip \
-       -e OPS_IP=$opscenter_ip \
        mustardgrain/cassandra:latest
 
 print_ips $name
