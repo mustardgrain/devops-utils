@@ -32,4 +32,4 @@ docker run \
        mustardgrain/elasticsearch:latest
 
 print_ips $name
-echo "Elasticsearch web UI running at http://$(get_external_ip $master_name):9200/_plugin/marvel/"
+echo "Elasticsearch running at http://$(get_external_ip $master_name):9200/"
