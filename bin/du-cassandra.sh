@@ -18,14 +18,8 @@ else
   cassandra_seed_ip=$(get_internal_ip $seed_name)
 fi
 
-if [ "$(is_docker_ec2 $name)" = "true" ] ; then
-  eval "$(docker-machine env $name)"
-  net="--net host"
-fi
-
 docker run \
        -d \
-       $net \
        --name $name \
        -e SEED=$cassandra_seed_ip \
        mustardgrain/cassandra:latest

@@ -8,18 +8,12 @@ if [ $# -lt 2 ] ; then
 fi
 
 name=$1
-num_partitions=${2:-10}
+num_partitions=$2
 zookeeper_ip=$(get_internal_ip zookeeper)
 broker_id=`echo $name | sed -e 's/kafka-//'`
 
-if [ "$(is_docker_ec2 $name)" = "true" ] ; then
-  eval "$(docker-machine env $name)"
-  net="--net host"
-fi
-
 docker run \
        -d \
-       $net \
        --name $name \
        -e BROKER_ID=$broker_id \
        -e ZOOKEEPER_CONNECT=$zookeeper_ip:2181 \

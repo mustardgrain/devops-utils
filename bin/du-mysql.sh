@@ -13,14 +13,8 @@ db_name=$2
 db_user=$3
 db_password=$4
 
-if [ "$(is_docker_ec2 $name)" = "true" ] ; then
-  eval "$(docker-machine env $name)"
-  net="--net host"
-fi
-
 docker run \
        -d \
-       $net \
        --name $name \
        -e MYSQL_ALLOW_EMPTY_PASSWORD=yes \
        -e MYSQL_ROOT_PASSWORD=$root_password \

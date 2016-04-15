@@ -18,18 +18,12 @@ else
   master_ip=$(get_internal_ip $master_name)
 fi
 
-if [ "$(is_docker_ec2 $name)" = "true" ] ; then
-  eval "$(docker-machine env $name)"
-  net="--net host"
-fi
-
 docker run \
        -d \
-       $net \
        --name $name \
        -e MASTER_IP=$master_ip \
        -e ES_HEAP_SIZE=4g \
        mustardgrain/elasticsearch:latest
 
 print_ips $name
-echo "Elasticsearch running at http://$(get_external_ip $master_name):9200/"
+echo "Elasticsearch running at http://$(get_internal_ip $master_name):9200/"
