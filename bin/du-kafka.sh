@@ -3,7 +3,7 @@
 source $(dirname $0)/_du-util.sh
 
 if [ $# -lt 2 ] ; then
-  echo "Usage: $0 <Kafka container name> <num partitions>"
+  echo "Usage: `basename $0` <Kafka container name> <num partitions>"
   exit 1
 fi
 

@@ -3,7 +3,7 @@
 source $(dirname $0)/_du-util.sh
 
 if [ $# -ne 3 ] ; then
-  echo "Usage: $0 <local directory> <user ID> <password>"
+  echo "Usage: `basename $0` <local directory> <user ID> <password>"
   exit 1
 fi
 

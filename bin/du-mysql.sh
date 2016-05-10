@@ -3,7 +3,7 @@
 source $(dirname $0)/_du-util.sh
 
 if [ $# -ne 4 ] ; then
-  echo "Usage: $0 <root password (can be empty)> <database> <database user ID> <database password>"
+  echo "Usage: `basename $0` <root password (can be empty)> <database> <database user ID> <database password>"
   exit 1
 fi
 
