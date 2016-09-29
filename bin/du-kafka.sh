@@ -2,13 +2,13 @@
 
 source $(dirname $0)/_du-util.sh
 
-if [ $# -lt 2 ] ; then
-  echo "Usage: `basename $0` <Kafka container name> <num partitions>"
+if [ $# -lt 1 ] ; then
+  echo "Usage: `basename $0` <Kafka container name> [<num partitions>]"
   exit 1
 fi
 
 name=$1
-num_partitions=$2
+num_partitions=${2:-1}
 zookeeper_ip=$(get_internal_ip zookeeper)
 broker_id=`echo $name | sed -e 's/kafka-//'`
 
